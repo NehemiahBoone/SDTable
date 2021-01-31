@@ -1,3 +1,5 @@
+using SDTable.Repositories;
+
 namespace SDTable.Services
 {
   public class SiteDownsService

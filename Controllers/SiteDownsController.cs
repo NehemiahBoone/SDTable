@@ -47,5 +47,23 @@ namespace SDTable.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpPut("{sd_id}")]
+    [Authorize]
+    public async Task<ActionResult<SiteDown>> EditSD(int sd_id, [FromBody] SiteDown editedSD)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        editedSD.Id = sd_id;
+
+        return Ok(_service.EditSD(editedSD, userInfo.Id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
   }
 }

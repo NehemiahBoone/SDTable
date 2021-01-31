@@ -6,6 +6,6 @@ namespace SDTable.Models
     public string SiteNum { get; set; }
     public string SiteName { get; set; }
     public string Cause { get; set; }
-    public bool Solved { get; set}
+    public bool Solved { get; set; }
   }
 }

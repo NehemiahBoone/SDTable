@@ -57,6 +57,8 @@ namespace SDTable
 
       services.AddTransient<ProfilesService>();
       services.AddTransient<ProfilesRepository>();
+      services.AddTransient<SiteDownsService>();
+      services.AddTransient<SiteDownsRepository>();
     }
 
     private IDbConnection CreateDbConnection()

@@ -65,5 +65,19 @@ namespace SDTable.Controllers
       }
     }
 
+    [HttpDelete("{sd_id}")]
+    public async Task<ActionResult<string>> DeleteSD(int sd_id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_service.DeleteSD(sd_id, userInfo.Id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
   }
 }

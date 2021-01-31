@@ -39,7 +39,7 @@ namespace SDTable.Controllers
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         newSD.CreatorId = userInfo.Id;
-        SiteDown created = _service.PostSiteDown(newSD);
+        SiteDown created = _service.PostSD(newSD);
         return Ok(created);
       }
       catch (System.Exception e)

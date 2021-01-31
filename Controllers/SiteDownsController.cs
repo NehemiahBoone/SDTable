@@ -31,6 +31,19 @@ namespace SDTable.Controllers
       }
     }
 
+    [HttpGet("{sd_id}")]
+    public ActionResult<SiteDown> GetById(int sd_id)
+    {
+      try
+      {
+        return Ok(_service.GetById(sd_id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<SiteDown>> PostSiteDown([FromBody] SiteDown newSD)

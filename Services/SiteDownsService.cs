@@ -34,23 +34,42 @@ namespace SDTable.Services
       newSD.Id = _repo.PostSD(newSD);
       return newSD;
     }
-    internal SiteDown EditSD(SiteDown editedSD, string id)
+    internal SiteDown EditSD(SiteDown editedSD, string userId)
     {
-      SiteDown original = _repo.GetById(editedKeep.Id);
+      SiteDown original = _repo.GetById(editedSD.Id);
       if (original == null)
       {
-        throw new Exception("Invalid Id... from keepsService");
+        throw new Exception("Invalid sitedown id");
       }
 
       if (original.CreatorId != userId)
       {
-        throw new Exception("NOT AUTHORIZED... from keepsService");
+        throw new Exception("NOT AUTHORIZED");
       }
+
+      editedSD.SiteNum = editedSD.SiteNum == null ? original.SiteNum : editedSD.SiteNum;
+      editedSD.SiteName = editedSD.SiteName == null ? original.SiteName : editedSD.SiteName;
+      editedSD.Cause = editedSD.Cause == null ? original.Cause : editedSD.Cause;
+      editedSD.Solved = editedSD.Solved == false ? original.Solved : editedSD.Solved;
+
+      return _repo.EditSD(editedSD);
     }
 
-    internal object DeleteSD(int sd_id, string id)
+    internal object DeleteSD(int sd_id, string userId)
     {
-      throw new NotImplementedException();
+      SiteDown original = _repo.GetById(sd_id);
+      if (original == null)
+      {
+        throw new Exception("Invalid sitedown id");
+      }
+
+      if (original.CreatorId != userId)
+      {
+        throw new Exception("NOT AUTHORIZED");
+      }
+
+      _repo.DeleteSD(sd_id);
+      return "Successfully Deleted";
     }
   }
 }

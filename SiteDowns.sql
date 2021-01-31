@@ -8,11 +8,16 @@ CREATE TABLE profiles
 );
 
 
-CREATE TABLE questions
+CREATE TABLE sitedowns
 (
   creatorId VARCHAR(255) NOT NULL,
   id INT AUTO_INCREMENT,
-  title VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
+  siteNum VARCHAR(255) NOT NULL,
+  siteName VARCHAR(255) NOT NULL,
+  cause VARCHAR(255) NOT NULL,
+  solved TINYINT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (creatorId)
+    REFERENCES profiles(id)
+    ON DELETE CASCADE
 );

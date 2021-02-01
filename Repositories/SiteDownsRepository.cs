@@ -9,5 +9,7 @@ namespace SDTable.Repositories
     {
       _db = db;
     }
+
+
   }
 }

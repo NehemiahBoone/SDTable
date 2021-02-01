@@ -53,6 +53,7 @@ namespace SDTable.Controllers
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         newSD.CreatorId = userInfo.Id;
         SiteDown created = _service.PostSD(newSD);
+        created.Creator = userInfo;
         return Ok(created);
       }
       catch (System.Exception e)
@@ -68,6 +69,7 @@ namespace SDTable.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        editedSD.Creator = userInfo;
         editedSD.Id = sd_id;
 
         return Ok(_service.EditSD(editedSD, userInfo.Id));

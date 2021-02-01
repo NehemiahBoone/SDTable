@@ -34,6 +34,15 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async postSD({ commit, dispatch }, newSD) {
+      try {
+        let res = await api.post("sitedowns", newSD)
+        console.log(res)
+        dispatch("getSiteDowns")
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
 });

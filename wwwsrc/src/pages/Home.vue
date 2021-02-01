@@ -1,7 +1,61 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
-      <div class="col-12"></div>
+      <div class="col-12">
+        <h2>
+          SiteDowns<i
+            class="fas fa-plus text-success px-1"
+            @click="sdToggle = !sdToggle"
+          ></i>
+        </h2>
+        <form @submit.prevent="postSD" class="form-inline m-1" v-if="sdToggle">
+          <div class="form-group px-1">
+            <input
+              type="text"
+              name="Site#"
+              id="Site#"
+              class="form-control"
+              placeholder="Site #..."
+              aria-describedby="helpId"
+              v-model="newSD.siteNum"
+            />
+          </div>
+          <div class="form-group px-1">
+            <input
+              type="text"
+              name="SiteName"
+              id="SiteName"
+              class="form-control"
+              placeholder="Site Name..."
+              aria-describedby="helpId"
+              v-model="newSD.siteName"
+            />
+          </div>
+          <div class="form-group px-1">
+            <input
+              type="text"
+              name="Cause"
+              id="Cause"
+              class="form-control"
+              placeholder="Cause..."
+              aria-describedby="helpId"
+              v-model="newSD.cause"
+            />
+          </div>
+          <label class="pl-1" for="solved">Solved?</label>
+          <div class="form-group px-1">
+            <input
+              type="checkbox"
+              name="solved"
+              id="solved"
+              class="form-control"
+              aria-describedby="helpId"
+              v-model="newSD.solved"
+            />
+          </div>
+          <button class="btn btn-success" type="submit">Post SiteDown</button>
+        </form>
+      </div>
     </div>
     <div class="row">
       <div class="col-12">
@@ -33,6 +87,18 @@ export default {
   name: "home",
   mounted() {
     this.$store.dispatch("getSiteDowns");
+  },
+  data() {
+    return {
+      sdToggle: false,
+      newSD: {},
+    };
+  },
+  methods: {
+    postSD() {
+      this.$store.dispatch("postSD", this.newSD);
+      this.newSD = {};
+    },
   },
   computed: {
     sitedowns() {

@@ -50,8 +50,9 @@ namespace SDTable.Services
       editedSD.SiteNum = editedSD.SiteNum == null ? original.SiteNum : editedSD.SiteNum;
       editedSD.SiteName = editedSD.SiteName == null ? original.SiteName : editedSD.SiteName;
       editedSD.Cause = editedSD.Cause == null ? original.Cause : editedSD.Cause;
-      editedSD.Solved = editedSD.Solved == false ? original.Solved : editedSD.Solved;
+      editedSD.Solved = editedSD.Solved;
       editedSD.Creator = editedSD.Creator == null ? original.Creator : editedSD.Creator;
+      editedSD.CreatorId = editedSD.CreatorId == null ? original.CreatorId : editedSD.CreatorId;
 
       return _repo.EditSD(editedSD);
     }

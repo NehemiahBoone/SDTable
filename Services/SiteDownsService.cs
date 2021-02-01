@@ -51,6 +51,7 @@ namespace SDTable.Services
       editedSD.SiteName = editedSD.SiteName == null ? original.SiteName : editedSD.SiteName;
       editedSD.Cause = editedSD.Cause == null ? original.Cause : editedSD.Cause;
       editedSD.Solved = editedSD.Solved == false ? original.Solved : editedSD.Solved;
+      editedSD.Creator = editedSD.Creator == null ? original.Creator : editedSD.Creator;
 
       return _repo.EditSD(editedSD);
     }

@@ -26,7 +26,7 @@ namespace SDTable.Repositories
       return _db.Query<SiteDown, Profile, SiteDown>(sql, (sitedown, profile) => { sitedown.Creator = profile; return sitedown; }, splitOn: "id");
     }
 
-    internal SiteDown GetById(SiteDown sd_id)
+    internal SiteDown GetById(int sd_id)
     {
       string sql = populateCreator + "WHERE sitedown.id = @sd_id";
       return _db.Query<SiteDown, Profile, SiteDown>(sql, (sitedown, profile) => { sitedown.Creator = profile; return sitedown; }, new { sd_id }, splitOn: "id").FirstOrDefault();

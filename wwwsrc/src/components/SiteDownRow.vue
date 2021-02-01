@@ -1,14 +1,17 @@
 <template>
   <tr>
-    <th scope="row">{{ sitenum }}</th>
-    <td>{{ sitename }}</td>
-    <td>{{ cause }}</td>
-    <td>{{ solved }}</td>
+    <th scope="row">{{ sdProp.siteNum }}</th>
+    <td>{{ sdProp.siteName }}</td>
+    <td>{{ sdProp.cause }}</td>
+    <td>{{ sdProp.solved }}</td>
   </tr>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "SiteDownRow",
+  props: ["sdProp"],
+};
 </script>
 
 <style>

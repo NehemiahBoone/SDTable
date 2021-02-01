@@ -7,11 +7,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {},
+    sitedowns: []
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
     },
+    setSiteDowns(state, sitedowns) {
+      state.sitedowns = sitedowns
+    }
   },
   actions: {
     async getProfile({ commit }) {
@@ -22,5 +26,14 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async getSiteDowns({ commit, dispatch }) {
+      try {
+        let res = await api.get("sitedowns")
+        console.log(res)
+        commit("setSiteDowns", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
   },
 });
